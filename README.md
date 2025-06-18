@@ -1,2 +1,7 @@
-# Detection_spot_position_with_Logistic_regression
-This project is based on determining the position of the Spot robot by Boston Dynamics using a logistic regression model. (For real-world problems, this is a rather primitive solution, but it serves well for educational purposes) 
+# 🤖 Detection of Spot Robot Position using Logistic Regression
+
+This project focuses on predicting the **position of Boston Dynamics' Spot robot** using **logistic regression** and pressure sensor data.
+
+---
+
+## 📂 Project Structure
