@@ -34,7 +34,7 @@ def get_min_max(data):
 
 
 def load_data():
-    data = pd.read_json('point_of_bases/data.json')
+    data = pd.read_json('bla bla bla')
     data = labeling(data)
     dataMove = data[['footForce', 'onstairs']]
     dataMove = dataMove.copy()
