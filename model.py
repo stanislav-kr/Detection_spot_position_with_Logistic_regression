@@ -1,4 +1,4 @@
-"""Ten plik jest główny i zawiera funkcje do uczenia i testowania modelu"""
+"""This is the main file and contains functions for training and testing the model"""
 
 import pandas as pd
 import numpy as np
@@ -9,24 +9,24 @@ x_train, x_test, y_train, y_test = load_data()
 
 
 class LogisticRegression:
-    """Klasa przyjmuje dwa parametry: learning_rate i epochs, które są hiperparametrami modelu."""
+    """Class accepts two parameters: learning_rate and epochs, which are model hyperparameters."""
 
     def __init__(self, learning_rate=0.01, epochs=1000):
         self.learning_rate = learning_rate
         self.epochs = epochs
 
-    """Funkcja przekształcająca liczby na wartości z przedziału od 0 do 1"""
+    """Function to transform numbers into values in the range from 0 to 1"""
 
     def sigmoid(self, z):
         return 1 / (1 + np.exp(-z))
 
-    """Funkcja do trenowania modelu"""
+    """Function to train the model"""
 
     def train(self, x_train, y_train):
         x_train = np.insert(x_train, 0, 1, axis=1)
         self.weights = np.zeros(x_train.shape[1])
 
-        # Obliczanie wag klas
+        # Calculating class weights
         total = len(y_train)
         count_0 = np.sum(y_train == 0)
         count_1 = np.sum(y_train == 1)
@@ -37,20 +37,20 @@ class LogisticRegression:
             z = np.dot(x_train, self.weights)
             predictions = self.sigmoid(z)
 
-            # Wagi dla każdej etykiety
+            # Weights for each label
             sample_weights = np.where(y_train == 1, weight_1, weight_0)
 
             # Gradient
             gradient = np.dot(x_train.T, sample_weights * (predictions - y_train)) / total
             self.weights -= self.learning_rate * gradient
 
-    """Funkcja zwracająca wartości prawdopodobieństwa przy użyciu funkcji sigmoidalnej"""
+    """Function returning probability values using the sigmoid function"""
 
     def predict_prob(self, x_test):
         x_test = np.insert(x_test, 0, 1, axis=1)
         return self.sigmoid(np.dot(x_test, self.weights))
 
-    """Funkcja sprawdzająca, czy wartość przekracza określony próg (threshold)"""
+    """Function checking if the value exceeds a specified threshold"""
 
     def predict(self, x_test):
         return self.predict_prob(x_test) >= 0.6
@@ -59,7 +59,7 @@ class LogisticRegression:
 model = LogisticRegression(learning_rate=0.1, epochs=1000)
 model.train(x_train, y_train)
 
-"""Sprawdza, czy plik został uruchomiony jako główny i jeśli tak, to wykonuje kod poniżej"""
+"""Checks if the file is run as main and if so, executes the code below"""
 if __name__ == "__main__":
     y_pred = model.predict(x_test)
 
