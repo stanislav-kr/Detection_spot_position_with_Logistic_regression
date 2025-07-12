@@ -1,10 +1,10 @@
-"""Ten plik zawiera funkcje do normalizacji i podziału danych"""
+"""This file contains functions for data normalization and splitting"""
 
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-"""Funkcja do normalizacji danych do zakresu [0,1]"""
+"""Function to normalize data to the range [0,1]"""
 
 
 def normalization(data, min_elem, max_elem):
@@ -13,7 +13,7 @@ def normalization(data, min_elem, max_elem):
     return data
 
 
-"""Funkcja tworząca nową kolumnę z etykietami"""
+"""Function creating a new column with labels"""
 
 
 def labeling(data):
@@ -22,7 +22,7 @@ def labeling(data):
     return data
 
 
-"""Funkcja zwracająca maksimum i minimum w zbiorze danych"""
+"""Function returning the maximum and minimum values in the dataset"""
 
 
 def get_min_max(data):
@@ -30,7 +30,7 @@ def get_min_max(data):
     return np.min(all_values), np.max(all_values)
 
 
-"""Główna funkcja do przetwarzania danych"""
+"""Main function for data processing"""
 
 
 def load_data():
@@ -38,15 +38,15 @@ def load_data():
     data = labeling(data)
     dataMove = data[['footForce', 'onstairs']]
     dataMove = dataMove.copy()
-    x = dataMove[['footForce']]  # wybór cech (features)
-    y = dataMove['onstairs']  # wybór etykiet (labels)
+    x = dataMove[['footForce']]    # feature selection
+    y = dataMove['onstairs']  # label selection
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2,
-                                                        random_state=42)  # podział danych: 80% treningowe, 20% testowe
+                                                        random_state=42)   # data split: 80% train, 20% test
     min_elem, max_elem = get_min_max(x_train['footForce'])
 
-    x_train = normalization(x_train, min_elem, max_elem).values   # normalizacja cech
-    x_test = normalization(x_test, min_elem, max_elem).values  # normalizacja cech
+    x_train = normalization(x_train, min_elem, max_elem).values    # feature normalization
+    x_test = normalization(x_test, min_elem, max_elem).values # feature normalization
 
-    x_train = np.array([x[0] for x in x_train])  # rozpakowanie danych z tablic numpy
+    x_train = np.array([x[0] for x in x_train])  # unpacking numpy arrays
     x_test = np.array([x[0] for x in x_test])
     return x_train, x_test, y_train, y_test
