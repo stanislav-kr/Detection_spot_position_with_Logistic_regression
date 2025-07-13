@@ -28,10 +28,16 @@ Only the following technologies were used:
 - `PyQt`
 
 
-
 ---
 ## Illustrations_and_example_of_work
+In the image below, you can see how the program works.  
+After entering the foot pressure data, the image shows:
 
+- **"Tilted robot"** — if the robot is on stairs (pressure difference between front and back legs).
+- **"Straight robot"** — if the robot is on a flat surface (pressure is nearly equal on all legs).
+
+- 
+![Robot walking](images/Robot.png)
 
 
 ---
