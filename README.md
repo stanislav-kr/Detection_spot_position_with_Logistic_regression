@@ -16,13 +16,17 @@ Machine learning, especially neural networks, is increasingly used beyond data s
 
 ---
 ## Technologies
-Of course, this project could have been made much shorter using the sky_learn library, but that wouldn't be interesting. It was decided to write a full-fledged logistic regression model from scratch.
-As for the data — it comes from foot sensors; these are the input features. The logic is as follows:
-- If the pressure on the front legs is greater than on the back legs, the robot is going downstairs.
-- If the pressure on the back legs is greater than on the front legs, the robot is going upstairs.
-- If the pressure is roughly equal on all legs, the robot is likely on flat ground.
+Of course, this project could have been made much shorter using the `sky_learn` library, but that wouldn't be interesting. Instead, a full-fledged logistic regression model was written from scratch.  
+Input data comes from foot pressure sensors. The logic is:
+- If front-leg pressure > back-leg pressure, the robot is **going downstairs**.
+- If back-leg pressure > front-leg pressure, the robot is **going upstairs**.
+- If pressure is roughly equal across all legs, the robot is on **flat ground**.  
 
-Therefore, among all available technologies, only numpy, pandas, and PyQt libraries were used.
+Only the following technologies were used:
+- `numpy`
+- `pandas`
+- `PyQt`
+
 
 
 ---
